@@ -3,16 +3,16 @@ package entities;
 public class Aluno {
     
     private String nome;
-    private Double nota;
+    private Double media;
     private Boolean status;
 
     public Aluno(){
 
     }
 
-    public Aluno(String nome, Double nota, Boolean status) {
+    public Aluno(String nome, double media, Boolean status) {
         this.nome = nome;
-        this.nota = nota;
+        this.media = media;
         this.status = status;
     }
 
@@ -24,14 +24,6 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public Double getNota() {
-        return nota;
-    }
-
-    public void setNota(Double nota) {
-        this.nota = nota;
-    }
-
     public Boolean getStatus() {
         return status;
     }
@@ -40,6 +32,19 @@ public class Aluno {
         this.status = status;
     }
 
+    public Double getMedia() {
+        return media;
+    }
 
+    public void setMedia(Double media) {
+        this.media = media;
+    }
+
+    @Override
+    public String toString() {
+        return "\nAluno [media=" + media + ", nome=" + nome + ", status=" + status + "] ";
+    }
+
+    
     
 }
