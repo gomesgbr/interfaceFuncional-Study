@@ -1,18 +1,29 @@
-## Getting Started
+## Interfaces Funcionais Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Neste repositorio foi feito testes com interfaces funcionais afim de entender o seu funcionamento, por exemplo:
 
-## Folder Structure
+Foi criado no arquivo "AlunoServices.java" dois metodos do tipo static recebendo interfaces funcionais como parametro, sendo que o metodo getAprovados recebe a interface Predicate, e o metodo paraCadaAluno recebe um Consumer, assim o primeiro metodo simula o "filter" e o segundo metodo simula o "forEach".
+```
+public static List<Aluno> getAprovados(List<Aluno> list, Predicate<Aluno> criterio)
+```
 
-The workspace contains two folders by default, where:
+```
+public static void paraCadaAluno(List<Aluno> list, Consumer<Aluno> criterio)
+```
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Foi feito o teste dos metodos com uma lista do tipo Aluno:
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+```
+System.out.println(AlunoServices.getAprovados(alunos, x -> x.getMedia() >= 6));
+```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+```
+AlunoServices.paraCadaAluno(alunos, p-> p.setMedia(p.getMedia() + 2));       
+        
+AlunoServices.paraCadaAluno(AlunoServices.getAprovados(alunos, x -> x.getMedia() >= 6), System.out::println); 
+```
+Após isso foi usado os metodos da classe Stream para demonstrar que os metodos da classe AlunoServices retornam o mesmo resultado.
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+```
+alunos.stream().filter(x -> x.getMedia() >= 6).forEach(System.out::println);
+```
